@@ -1,0 +1,95 @@
+$primary-color: #1b1b1b;
+$secondary-color: #0ff2b2;
+$third-color: #35d0f2;
+$fourth-color: #fff587;
+$fifth-color: #ff665a;
+$show-home-image: true;
+$home-image: url(../img/background.jpg);
+$background-opacity: 0.7;
+
+@mixin easeOut {
+  transition: all 0.5s ease-out;
+}
+
+@mixin scaleOut1 {
+  transform: scale(1.1);
+  transform-origin: 100% 100%;
+}
+
+@mixin scaleOut2 {
+  transform: scale(1.1);
+  transform-origin: 0% 100%;
+}
+
+@mixin scaleOut3 {
+  transform: scale(1.1);
+  transform-origin: 100% 0%;
+}
+
+@mixin scaleOut4 {
+  transform: scale(1.1);
+  transform-origin: 0% 0%;
+}
+
+@mixin background {
+  @if $show-home-image {
+    &#bg-img {
+      background: $home-image;
+      background-attachment: fixed;
+      background-size: cover;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
+
+// set text color
+
+@function set-text-color($color) {
+  @if (lightness($color) > 40) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+//media query mixins
+
+@mixin mediaMn {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
+
+@mixin mediaSm {
+  @media screen and (max-width: 460px) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
